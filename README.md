@@ -11,8 +11,12 @@ import genv
 import os
 
 fn main() {
-    // run first the function
-    genv.load_env()
+    // run first the function (overwrite should be set)
+    genv.load_env(overwrite: false)
+    // if you want to overwrite the variables
+    // use `genv.load_env(overwrite: true)`
+    // you can also just use `genv.load_env({})`
+    //  this will default to true
 
     // you can now access your variables
     // from the `.env` file

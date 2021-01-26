@@ -7,10 +7,12 @@ const (
 	env_main = '.env'
 )
 
-pub fn load_env() {
-	// mut envs := map[string]string
+// Main Config the parser function
+pub struct LoaderConfig {
+	overwrite bool = true // custom default to true
+}
 
-	// 
+pub fn load_env(config LoaderConfig) {
 	env_path := os.join_path(w_dir, env_main)
 
 	// check if .env exists in the working_dir
@@ -28,8 +30,8 @@ pub fn load_env() {
 				var, value := split_slash(i)
 
 				// set each env variable
-				// defaults to override
-				os.setenv(var, value, true)
+				// get the value of config.overwrite
+				os.setenv(var, value, config.overwrite)
 			}
 		}
 	}
