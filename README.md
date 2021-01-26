@@ -1,4 +1,4 @@
-# genv
+# venv
 Simple `.env` parser and loader for VLang projects.
 
 ## What it does?
@@ -6,16 +6,16 @@ Loads the variables configured from your `.env` file in your root project and ad
 
 ## Usage
 ```v
-import genv
+import venv
 
 import os
 
 fn main() {
     // run first the function (overwrite should be set)
-    genv.load_env(overwrite: false)
+    venv.load_env(overwrite: false)
     // if you want to overwrite the variables
-    // use `genv.load_env(overwrite: true)`
-    // you can also just use `genv.load_env({})`
+    // use `venv.load_env(overwrite: true)`
+    // you can also just use `venv.load_env({})`
     //  this will default to true
 
     // you can now access your variables
