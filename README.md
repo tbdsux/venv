@@ -1,6 +1,11 @@
 # venv
 Simple `.env` parser and loader for VLang projects.
 
+## Install
+```
+v install TheBoringDude.venv
+```
+
 ## What it does?
 Loads the variables configured from your `.env` file in your root project and adds them to the `os.environ`
 
@@ -22,6 +27,12 @@ fn main() {
     // from the `.env` file
     println(os.getenv('My_VARIABLE'))
 }
+```
+
+## `.env` Structure
+I do not want to complicate a simple utility. It just parses the common `.env` structure like, .. 
+```
+HELLO=WORLD
 ```
 
 #### &copy; TheBoringDude
