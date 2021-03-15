@@ -10,9 +10,22 @@ const (
 // Main Config the parser function
 pub struct LoaderConfig {
 	overwrite bool = true // custom default to true
+	uppercase bool = true // convert env keys to uppercase
 }
 
-pub fn load_env(config LoaderConfig) {
+// load_env is a simple loader
+pub fn load_env() {
+	loader({})
+}
+
+// load_env_conf loads .env with defined configurations
+pub fn load_env_conf(config LoaderConfig) {
+	loader(config)
+}
+
+
+// loader is the main .env loader / parser
+fn loader(config LoaderConfig) {
 	env_path := os.join_path(w_dir, env_main)
 
 	// check if .env exists in the working_dir
@@ -30,8 +43,9 @@ pub fn load_env(config LoaderConfig) {
 				var, value := split_slash(i)
 
 				// set each env variable
-				// get the value of config.overwrite
-				os.setenv(var, value, config.overwrite)
+				// .. -> get the values of `LoaderConfig`
+				// .. -> automatically trim all spaces
+				os.setenv(set_upper(var, config.uppercase).trim_space(), value.trim_space(), config.overwrite)
 			}
 		}
 	}
@@ -41,4 +55,13 @@ pub fn load_env(config LoaderConfig) {
 fn split_slash(variable string) (string, string) {
 	x := variable.split('=')
 	return x[0], x[1]
+}
+
+// return uppercase if upper is true
+fn set_upper(x string, upper bool) string {
+	if upper {
+		return x.to_upper()
+	}
+
+	return x
 }

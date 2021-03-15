@@ -10,18 +10,19 @@ fn test_without_load_env() {
 	assert(os.getenv('TEST_VAR') != 'my value')
 }
 
-// do not overwrite files
-fn test_load_env() {
-	// load .env from included file
-	load_env(overwrite: false)
+// load env vars w/ config
+// NOTE: load_env_conf tests should be first
+fn test_load_env_conf() {
+	// load env
+	load_env_conf(overwrite: false)
 
 	assert(os.getenv('TEST_VAR') == 'my value')
 }
 
-// overwrite vars
-fn test_overoverwrite_load_env() {
-	// set overwrite to true
-	load_env(overwrite: true)
+// do not overwrite files
+fn test_load_env() {
+	// load env
+	load_env()
 
 	assert(os.getenv('TEST_VAR') == 'another test var')
 }
