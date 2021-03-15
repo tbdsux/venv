@@ -16,8 +16,9 @@ import venv
 import os
 
 fn main() {
-    // run first the function (overwrite should be set)
-    venv.load_env(overwrite: false)
+    // run first the function
+    // if you want to have some configurations, use `venv.load_env_conf(LoaderConfig)`
+    venv.load_env()
     // if you want to overwrite the variables
     // use `venv.load_env(overwrite: true)`
     // you can also just use `venv.load_env({})`
@@ -29,9 +30,27 @@ fn main() {
 }
 ```
 
+### Functions
+#### `venv.load_env`
+- Loads `.env` file using the default configurations.
+
+#### `venv.load_env_conf(LoaderConfig)`
+- Loads `.env` file with configurations.
+
+    **LoaderConfig**
+    ```
+    pub struct LoaderConfig {
+        overwrite bool = true // custom default to true
+        uppercase bool = true // convert env keys to uppercase
+    }
+    ```
+
 ## `.env` Structure
 I do not want to complicate a simple utility. It just parses the common `.env` structure like, .. 
 ```
+# this is some comment
+// you can do anything 
+#### but if `=` is detected, the line will be parsed
 HELLO=WORLD
 ```
 
