@@ -45,6 +45,16 @@ fn main() {
     }
     ```
 
+### Custom `getenv`
+```v
+// you can use venv's custom getenv to automatically convert vars
+//  to their respective vars
+
+println(venv.getenv_bool("BOOL")) // bool env var value
+println(venv.getenv_int("NUM")) // int env var value
+println(venv.getenv_float("FLOAT")) // float env var value
+```
+
 ## `.env` Structure
 I do not want to complicate a simple utility. It just parses the common `.env` structure like, .. 
 ```
