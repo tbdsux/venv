@@ -26,3 +26,16 @@ fn test_load_env() {
 
 	assert(os.getenv('TEST_VAR') == 'another test var')
 }
+
+
+// test custom loaders
+
+fn test_bool_loader() {
+	assert venv.getenv_bool("BOOL") == true
+}
+fn test_int_loader() {
+	assert venv.getenv_int("NUM") == 123
+}
+fn test_float_loader() {
+	assert venv.getenv_float("FLOAT") == 45.2
+}
