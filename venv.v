@@ -39,7 +39,7 @@ fn loader(config LoaderConfig) {
 		for i in env_lines{
 			// defined variables should
 			// be in the form VAR=value
-			if '=' in i{
+			if i.contains("="){
 				var, value := split_slash(i)
 
 				// set each env variable
