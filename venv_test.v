@@ -31,11 +31,11 @@ fn test_load_env() {
 // test custom loaders
 
 fn test_bool_loader() {
-	assert venv.getenv_bool("BOOL") == true
+	assert getenv_bool("BOOL") == false
 }
 fn test_int_loader() {
-	assert venv.getenv_int("NUM") == 123
+	assert getenv_int("NUM") == 123
 }
 fn test_float_loader() {
-	assert venv.getenv_float("FLOAT") == 45.2
+	assert getenv_float("FLOAT") == 45.2
 }
