@@ -3,7 +3,7 @@ module venv
 import os
 
 const (
-	w_dir = os.getwd()
+	w_dir    = os.getwd()
 	env_main = '.env'
 )
 
@@ -15,7 +15,7 @@ pub struct LoaderConfig {
 
 // load_env is a simple loader
 pub fn load_env() {
-	loader({})
+	loader(LoaderConfig{})
 }
 
 // load_env_conf loads .env with defined configurations
@@ -23,29 +23,27 @@ pub fn load_env_conf(config LoaderConfig) {
 	loader(config)
 }
 
-
 // loader is the main .env loader / parser
 fn loader(config LoaderConfig) {
-	env_path := os.join_path(w_dir, env_main)
+	env_path := os.join_path(venv.w_dir, venv.env_main)
 
 	// check if .env exists in the working_dir
 	if os.is_file(env_path) {
 		// read each line of its content
-		env_lines := os.read_lines(env_path) or {
-			return
-		}
+		env_lines := os.read_lines(env_path) or { return }
 
 		// parse each variables
-		for i in env_lines{
+		for i in env_lines {
 			// defined variables should
 			// be in the form VAR=value
-			if i.contains("="){
+			if i.contains('=') {
 				var, value := split_slash(i)
 
 				// set each env variable
 				// .. -> get the values of `LoaderConfig`
 				// .. -> automatically trim all spaces
-				os.setenv(set_upper(var, config.uppercase).trim_space(), value.trim_space(), config.overwrite)
+				os.setenv(set_upper(var, config.uppercase).trim_space(), value.trim_space(),
+					config.overwrite)
 			}
 		}
 	}
